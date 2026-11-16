@@ -1,0 +1,16 @@
+import { GEOM } from '../engine/engine';
+export { GEOM };
+export const SP = 11;
+export const SCALE = SP / 250;
+export const STAFF_TOP = 44;
+export const GROUND = 170;
+export const PRINT_Y = 196;
+export const LANE_TOP = 108;
+export const LANE_BOTTOM = 222;
+export const HEIGHT = 226;
+export const HEAD_WIDTH = 295 * SCALE;
+export const ACCENT_Y = STAFF_TOP - 0.75 * SP;
+export const X = (i: number) => GEOM.X0 + i * GEOM.W;
+export const CX = (i: number) => X(i) + 10 + HEAD_WIDTH / 2;
+export const PITCH_STEP = { B4: 4, C5: 3, D5: 2, E5: 1 } as const;
+export const pitchY = (pitch: keyof typeof PITCH_STEP) => STAFF_TOP + PITCH_STEP[pitch] * SP / 2;

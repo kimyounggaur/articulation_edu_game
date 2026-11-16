@@ -1,0 +1,43 @@
+/** The supplied plan omits §9.8; these strings are recovered from its screen descriptions and prompts. */
+export const LABELS = {
+  back: '뒤로',
+  home: '눈길 지도',
+  intro: '걸음 배우기',
+  make: '길 만들기',
+  read: '걸음 읽기',
+  det: '발자국 탐정',
+  ear: '귀로 맞히기',
+  free: '자유 눈길',
+  records: '내 기록',
+  settings: '설정',
+  walk: '걷기',
+  tryWalk: '걸어 보기',
+  replay: '다시 걷기',
+  listen: '다시 듣기',
+  stop: '멈춤',
+  next: '다음',
+  finish: '마치기',
+  clear: '지우기',
+  retry: '다시 하기',
+  nextMission: '다음 미션',
+  map: '지도로',
+  clearRecords: '기록 지우기',
+  soundOn: '소리 켬',
+  soundOff: '소리 끔',
+  leaveMission: '지도로 돌아갈까요? 이번 미션의 진행은 저장되지 않아요.',
+  classLink: '수업 링크로 눈길을 열었어요.',
+  notEnough: '아직 적어요',
+  saveUnavailable: '이 환경에서는 기록을 저장할 수 없어요. 화면을 닫으면 기록이 사라질 수 있어요.',
+  copy: '복사',
+  copied: '복사했어요',
+  melody: '가락',
+  ordinary: '보통 걸음',
+  noSign: '표지판 없음',
+  locked: '앞의 미션을 마치면 열려요.',
+  teacherGuide: '선생님 안내',
+  sources: '출처와 라이선스',
+} as const;
+
+export const MISSION_LABELS = [LABELS.intro, LABELS.make, LABELS.read, LABELS.det, LABELS.ear] as const;
+export const NOTE_LABELS = ['첫째 음', '둘째 음', '셋째 음', '넷째 음'] as const;
+export const LINK_LABELS = ['첫째 음과 둘째 음 사이', '둘째 음과 셋째 음 사이', '셋째 음과 넷째 음 사이'] as const;
