@@ -8,6 +8,7 @@ import { LABELS as L, MISSION_LABELS } from './labels';
 import { INTRO_SCENES } from './introScenes';
 import Settings from './Settings';
 import Records from './Records';
+import Rulebook from './Rulebook';
 
 type Tool=Kind|'clear'|null;
 const seedOf=()=>crypto.getRandomValues(new Uint32Array(1))[0];
@@ -20,6 +21,7 @@ export function SnowpathApp(){
  const {route,setRoute}=useNavigation();
  const {hydrated,hydrate,settings,soundOverride,setSound}=useGame();
  const [toast,setToast]=useState('');
+ const [rulebookOpen,setRulebookOpen]=useState(false);
  const [leave,setLeave]=useState<Route|null>(null);
  const sound=soundOverride??settings.soundOn;
  const go=useCallback((next:Route,force=false)=>{
@@ -44,6 +46,7 @@ export function SnowpathApp(){
    {route.screen==='home'?<a className="brand" href="#main" aria-label="눈길 발자국"><SnowIcon small/><span>눈길 발자국</span></a>:<button className="icon-button" onClick={()=>go({screen:'home'})} aria-label={L.back}>←</button>}
    {route.screen!=='home'&&<h1>{title}</h1>}
    <div className="header-actions">
+    <button className="rulebook-trigger" type="button" aria-label="게임 룰북 열기" aria-haspopup="dialog" onClick={()=>setRulebookOpen(true)}><span aria-hidden="true">▤</span><span>룰북</span></button>
     {route.screen==='home'&&<><button className="header-text" onClick={()=>go({screen:'records'})}>{L.records}</button><button className="icon-button" aria-label={L.settings} onClick={()=>go({screen:'settings'})}>⚙</button></>}
     <button className="sound-button" aria-label={sound?L.soundOn:L.soundOff} aria-pressed={sound} onClick={()=>setSound(!sound)}><span aria-hidden="true">{sound?'♪':'♩'}</span><span>{sound?'소리 켬':'소리 끔'}</span></button>
    </div>
@@ -56,6 +59,7 @@ export function SnowpathApp(){
    {route.screen==='records'&&<Records onHome={()=>go({screen:'home'})}/>}
    {route.screen==='settings'&&<Settings onHome={()=>go({screen:'home'})}/>}
   </main>
+  <Rulebook open={rulebookOpen} onClose={()=>setRulebookOpen(false)}/>
   {toast&&<div className="toast" role="status">{toast}</div>}
   {leave&&<div className="modal-scrim"><section className="panel confirm-panel" role="alertdialog" aria-modal="true" aria-labelledby="leave-title"><h2 id="leave-title">{L.leaveMission}</h2><div className="actions"><button className="button secondary" onClick={()=>setLeave(null)}>계속 걷기</button><button className="button" onClick={()=>{go(leave,true);setLeave(null);}}>지도로 돌아가기</button></div></section></div>}
  </div>;
